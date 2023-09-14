@@ -25,7 +25,7 @@ app.listen(app.get('port'), () => {
 );
 
 //conectar a BD
-mongoose.connect("mongodb+srv://faty:QL8jWv6qRQCFplii@cluster0.q3on5sh.mongodb.net/Restaurante?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://faty:Sx09AnoKdsJewkAY@cluster0.q3on5sh.mongodb.net/Restaurante?retryWrites=true&w=majority")
 .then(bd=>console.log('BD conectada'))
 .catch(err=>console.log(err));
 
