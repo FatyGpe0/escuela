@@ -9,7 +9,41 @@
 </head>
 <body>
 <div class="container">
+  <div class="col-md-5">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Mesa</th>
 
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i = 0; i < datos.length; i++){  %>
+                <tr>
+                    <td><%= i+1  %></td>
+                    <td><%= datos[i].producto  %></td>
+                    <td><%= datos[i].precio  %></td>
+                    <td><%= datos[i].iva  %></td>
+                    <td>
+                        <!--<a class="btn btn-primary" href="/del/<%= datos[i].id %>">Eliminar</a>-->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Eliminar
+                        </button>
+                        
+                        <!-- Modal -->
+                      
+
+                       
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
 </div>
 
 </body>
