@@ -8,7 +8,7 @@ const IndexRoutes = require('./routers/index.js');
 const { default: mongoose } = require('mongoose');
 
 app.set('port', process.env.PORT || 3000); // asignacion de puerto
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 
 //MiddleWare utiliza morgan
@@ -21,7 +21,6 @@ app.use('/',IndexRoutes);
 app.listen(app.get('port'), () => {
     console.log('El servidor esta funcionando en el puerto ', app.get('port'));
 } 
-
 );
 
 //conectar a BD

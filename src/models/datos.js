@@ -1,4 +1,4 @@
-const mongoose = requiere('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Cliente = new Schema({
@@ -7,4 +7,4 @@ const Cliente = new Schema({
     mesa: String
 });
 
-module.exports = mongoose.model('datos', Cliente)
+module.exports = mongoose.model('datos', Cliente);

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const model = requiere('../models/clientes.js')();
-const Cliente = requiere('../model/clientes.js');
+const model = require('../models/datos')();
+const Cliente = require('../models/datos');
 
 router.get('/', async (req, res)=>{
     const datos = await Cliente.find();
