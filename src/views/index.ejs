@@ -55,13 +55,28 @@
                     <td>
                         <!--<a class="btn btn-primary" href="/del/<%= datos[i].id %>">Eliminar</a>-->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= datos[i]._id %>">
                             Eliminar
                         </button>
                         
                         <!-- Modal -->
+                        <div class="modal fade" id="exampleModal<%= datos[i]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">¿Está seguro que desea Eliminar este campo?  </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <a href="/del/<%=datos[i]._id %>" class="btn btn-primary">Confirmar</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                       
-
                        
                     </td>
                 </tr>

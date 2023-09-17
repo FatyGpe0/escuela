@@ -26,8 +26,8 @@ router.get('/del/:id', async (req, res)=>{
     res.redirect('/');
 })
 
+module.exports = router;
 
 //al presional el boton de eliminar se abra una ventana modal para que se confirme la eliminación
 //<a href="/del/_id"
 // el link que va a ejectar la aplicacion debe ir en el modal en la opcion de confirmar
-module.exports = router;
