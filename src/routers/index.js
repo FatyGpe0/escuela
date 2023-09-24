@@ -22,15 +22,30 @@ router.post('/add', async (req, res)=>{
 
 router.get('/del/:id', async (req, res)=>{   //Eliminar
     const {id}=req.params;
-    await Cliente.findByIdAndRemove(id);   //Actualizar
+    await Cliente.findByIdAndRemove(id);  
     res.redirect('/');
 })
 
-router.get('/upd/:id', async (req, res)=>{
-    const {id}=req.params;
-    await Cliente.findByIdAndUpdate(id);
-    res.redirect('/');
-})
+router.post('/upd/:id', async (req, res) => { //Actualizar
+    const { id } = req.params;
+    const { nombre, apellido, mesa } = req.body;
+
+    try {
+        const clienteActualizado = await Cliente.findByIdAndUpdate(id, {
+            nombre,
+            apellido,
+            mesa
+        }, { new: true });
+
+        if (!clienteActualizado) {
+            return res.status(404).send('Cliente no encontrado');
+        }
+
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send('Error al actualizar el cliente: ' + error.message);
+    }
+});
 
 module.exports = router;
 

@@ -11,28 +11,32 @@
     
 <div class="container">
     <!--comienza form-->
-    <div class="col-4">
-        <div class="card">
-            <div class="card-body">
-                <form action="/add" method="POST">
-                    <div class="form-group">
-                        <label for="producto" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Clientes" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="producto" class="form-label">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="producto" class="form-label">Mesa</label>
-                        <input type="number" id="mesa" name="mesa" class="form-control">
-                    </div>
-                    <button class="btn btn-primary">Registrar</button>
-                    <button class="btn btn-primary">Actualizar</button>
-                </form>
-            </div>
+    <!-- comienza form -->
+<div class="col-4">
+    <div class="card">
+        <div class="card-body">
+            <form id="registroForm" method="POST" action="/add"> <!-- Agrega el ID y la acción -->
+                <!-- Agrega un campo oculto para el ID del registro -->
+                <input type="hidden" id="registroId" name="registroId">
+                <div class="form-group">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="mesa" class="form-label">Mesa</label>
+                    <input type="number" id="mesa" name="mesa" class="form-control">
+                </div>
+                <button class="btn btn-primary">Registrar</button>
+                <!-- Cambia el texto del botón a "Actualizar" -->
+                <button class="btn btn-primary" type="submit">Actualizar</button> <!-- Cambia el tipo a "submit" -->
+            </form>
         </div>
     </div>
+</div>
 
 
   <div class="col-md-5">
@@ -60,8 +64,12 @@
                             Eliminar
                         </button>
 
-                        <button type="button" class="btn btn-primary">
-                            Actualizar 
+                        <button type="button" class="btn btn-primary btn-actualizar"
+                         data-id="<%= datos[i]._id %>"
+                         data-nombre="<%= datos[i].nombre %>"
+                         data-apellido="<%= datos[i].apellido %>"
+                         data-mesa="<%= datos[i].mesa %>">
+                         Actualizar
                         </button>
                         
                         <!-- Modal -->
@@ -91,5 +99,38 @@
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<!--Script para cargar los datos del registro seleccionarlos y enviarlos al form y poder actualizar-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnActualizar = document.querySelectorAll('.btn-actualizar');
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const mesaInput = document.getElementById('mesa');
+        const registroIdInput = document.getElementById('registroId');
+
+        btnActualizar.forEach(function (boton) {
+            boton.addEventListener('click', function () {
+                // Obtén la información del botón
+                const id = boton.getAttribute('data-id');
+                const nombre = boton.getAttribute('data-nombre');
+                const apellido = boton.getAttribute('data-apellido');
+                const mesa = boton.getAttribute('data-mesa');
+
+                // Llena el formulario con la información del registro seleccionado
+                nombreInput.value = nombre;
+                apellidoInput.value = apellido;
+                mesaInput.value = mesa;
+                registroIdInput.value = id; // Establece el ID del registro a actualizar
+
+                // Cambia la acción del formulario para que apunte a la ruta de actualización
+                const formulario = document.getElementById('registroForm');
+                formulario.action = `/upd/${id}`;
+            });
+        });
+    });
+</script>
+
+
 </body>
 </html>
