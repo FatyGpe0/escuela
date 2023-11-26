@@ -9,7 +9,7 @@ router.get('/', async (req, res)=>{
     res.render('index.ejs',{
         datos
     });
-}); //el get obtiene datos
+}); //el get obtiene datoss
 
 
 router.post('/add', async (req, res)=>{
